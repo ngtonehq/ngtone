@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N &gt; 1 — Beyond the anecdote</title>
+<meta name="description" content="A vertically integrated software-and-clinical-evidence company that takes substances out of N=1 anecdote and into N&gt;1 evidence — rigorous trials, real endpoints, ill patients, public results.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="N &gt; 1 — Beyond the anecdote">
+<meta property="og:description" content="Taking substances out of N=1 anecdote and into N&gt;1 evidence.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08090b;
+    --bg-2:#0d0f12;
+    --panel:#101317;
+    --line:#1d2228;
+    --line-2:#2a3038;
+    --ink:#e8ecf1;
+    --ink-dim:#9aa3ad;
+    --ink-faint:#646c76;
+    --accent:#4ade80;       /* the > sign / signal green */
+    --accent-dim:#1f5f3a;
+    --warn:#e3b341;
+    --danger:#e5534b;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#04150b}
+
+  /* faint grid backdrop */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    opacity:.18;
+    mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 75%);
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,9,11,.72);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:18px;letter-spacing:.02em;display:flex;align-items:center;gap:2px}
+  .brand .gt{color:var(--accent)}
+  .nav-links{display:flex;gap:30px;font-size:13.5px;color:var(--ink-dim)}
+  .nav-links a{transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    font-family:var(--mono);font-size:13px;font-weight:500;
+    border:1px solid var(--line-2);padding:8px 16px;border-radius:6px;color:var(--ink);
+    transition:all .15s;
+  }
+  .nav-cta:hover{border-color:var(--accent);color:var(--accent)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  header{padding:108px 0 84px;text-align:center;position:relative}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:34px;
+  }
+  .mark{
+    font-family:var(--mono);font-weight:700;
+    font-size:clamp(76px,17vw,168px);line-height:.9;letter-spacing:-.02em;
+    display:flex;align-items:center;justify-content:center;gap:.12em;
+  }
+  .mark .gt{color:var(--accent);position:relative}
+  .mark .gt::after{
+    content:"";position:absolute;inset:-12% -22%;border:1px solid var(--accent-dim);border-radius:14px;
+    opacity:.5;
+  }
+  .hero-sub{
+    max-width:680px;margin:36px auto 0;font-size:clamp(18px,2.4vw,22px);color:var(--ink-dim);
+    font-weight:400;
+  }
+  .hero-sub strong{color:var(--ink);font-weight:600}
+  .tagline{
+    font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--accent);
+    margin-top:28px;text-transform:lowercase;
+  }
+  .hero-btns{display:flex;gap:14px;justify-content:center;margin-top:42px;flex-wrap:wrap}
+  .btn{
+    font-family:var(--mono);font-size:14px;font-weight:500;padding:13px 26px;border-radius:7px;
+    cursor:pointer;transition:all .15s;border:1px solid var(--line-2);background:transparent;color:var(--ink);
+  }
+  .btn-primary{background:var(--accent);color:#04150b;border-color:var(--accent);font-weight:700}
+  .btn-primary:hover{box-shadow:0 0 0 3px var(--accent-dim);transform:translateY(-1px)}
+  .btn-ghost:hover{border-color:var(--ink-dim)}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:74px 0;border-top:1px solid var(--line)}
+  .sec-tag{
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;
+  }
+  .sec-tag::before{content:"";width:22px;height:1px;background:var(--accent)}
+  h2{font-size:clamp(27px,4vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.12;margin-bottom:22px}
+  h2 .gt{color:var(--accent)}
+  .lead{font-size:clamp(16px,2vw,18.5px);color:var(--ink-dim);max-width:760px}
+  .lead strong{color:var(--ink);font-weight:600}
+
+  /* ---------- THESIS / TRANSFORM ---------- */
+  .transform{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;margin-top:44px;
+  }
+  .tcard{
+    border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:30px 26px;
+  }
+  .tcard.from{opacity:.86}
+  .tcard.to{border-color:var(--accent-dim);box-shadow:0 0 60px -30px var(--accent)}
+  .tcard .label{font-family:var(--mono);font-size:13px;font-weight:700;margin-bottom:14px}
+  .tcard.from .label{color:var(--ink-faint)}
+  .tcard.to .label{color:var(--accent)}
+  .tcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .tcard li{font-size:14.5px;color:var(--ink-dim);padding-left:18px;position:relative}
+  .tcard li::before{content:"—";position:absolute;left:0;color:var(--ink-faint)}
+  .tcard.to li::before{content:"+";color:var(--accent)}
+  .tarrow{display:flex;align-items:center;justify-content:center;font-family:var(--mono);
+    font-size:30px;color:var(--accent);font-weight:700}
+  @media(max-width:740px){
+    .transform{grid-template-columns:1fr}
+    .tarrow{transform:rotate(90deg);padding:4px 0}
+  }
+
+  /* ---------- WHY NOW TABLE ---------- */
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:42px}
+  .force{
+    border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:22px 22px;
+    transition:border-color .15s;
+  }
+  .force:hover{border-color:var(--line-2)}
+  .force .f-head{font-family:var(--mono);font-size:13px;color:var(--accent);margin-bottom:8px;font-weight:500}
+  .force .f-body{font-size:14.5px;color:var(--ink-dim)}
+  .force .f-body strong{color:var(--ink);font-weight:600}
+
+  /* ---------- PLATFORM LAYERS ---------- */
+  .layers{display:flex;flex-direction:column;gap:0;margin-top:42px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .layer{
+    display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid var(--line);
+    background:var(--panel);transition:background .15s;
+  }
+  .layer:last-child{border-bottom:none}
+  .layer:hover{background:var(--bg-2)}
+  .layer .num{
+    font-family:var(--mono);font-size:15px;font-weight:700;color:var(--accent);
+    display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);
+    background:rgba(74,222,128,.04);
+  }
+  .layer .body{padding:20px 24px}
+  .layer .l-title{font-size:16px;font-weight:600;margin-bottom:5px}
+  .layer .l-desc{font-size:14px;color:var(--ink-dim)}
+  .layer .l-metric{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin-top:7px}
+  .flywheel{
+    font-family:var(--mono);font-size:13.5px;color:var(--ink-dim);margin-top:24px;
+    border-left:2px solid var(--accent);padding:6px 0 6px 18px;
+  }
+  .flywheel strong{color:var(--ink)}
+
+  /* ---------- PRODUCTS ---------- */
+  .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:42px}
+  .product{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:26px 24px;position:relative;overflow:hidden}
+  .product .p-idx{font-family:var(--mono);font-size:42px;font-weight:700;color:var(--line-2);position:absolute;top:14px;right:20px;line-height:1}
+  .product h3{font-size:17px;font-weight:600;margin-bottom:11px;padding-right:40px}
+  .product p{font-size:14px;color:var(--ink-dim)}
+
+  /* ---------- TRIALS ---------- */
+  .trials{margin-top:42px;display:flex;flex-direction:column;gap:16px}
+  .trial{
+    border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:26px 26px;
+    display:grid;grid-template-columns:1fr;gap:14px;
+  }
+  .trial-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .trial .substance{font-size:19px;font-weight:700}
+  .trial .substance .ind{color:var(--accent);font-weight:500;font-size:15px}
+  .trial .cost{font-family:var(--mono);font-size:14px;color:var(--ink);white-space:nowrap}
+  .trial .design{font-size:14px;color:var(--ink-dim)}
+  .trial .win{font-size:14px;color:var(--ink-dim);border-top:1px solid var(--line);padding-top:13px}
+  .trial .win b{color:var(--accent);font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;display:block;margin-bottom:5px;font-weight:700}
+  .trial-total{font-family:var(--mono);font-size:15px;color:var(--ink);margin-top:6px;text-align:right}
+  .trial-total b{color:var(--accent)}
+
+  /* ---------- CAPITAL ---------- */
+  .capital{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;margin-top:42px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .cap{padding:24px 22px;border-right:1px solid var(--line);background:var(--panel)}
+  .cap:last-child{border-right:none}
+  .cap .c-yr{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+  .cap .c-amt{font-size:24px;font-weight:700;margin-bottom:10px}
+  .cap .c-meta{font-size:13px;color:var(--ink-dim);line-height:1.7}
+  @media(max-width:680px){.capital{grid-template-columns:1fr 1fr}.cap{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}}
+
+  /* ---------- LANES ---------- */
+  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
+  .lane{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--panel)}
+  .lane h4{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;font-weight:700}
+  .lane.green{border-color:var(--accent-dim)} .lane.green h4{color:var(--accent)}
+  .lane.yellow h4{color:var(--warn)} .lane.yellow{border-color:#5a4a1a}
+  .lane.red h4{color:var(--danger)} .lane.red{border-color:#5a2422}
+  .lane ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .lane li{font-size:13px;color:var(--ink-dim);padding-left:16px;position:relative}
+  .lane li::before{content:"▪";position:absolute;left:0;font-size:9px;top:4px}
+  .lane.green li::before{color:var(--accent)}
+  .lane.yellow li::before{color:var(--warn)}
+  .lane.red li::before{color:var(--danger)}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+
+  /* ---------- RISKS ---------- */
+  .risks{margin-top:42px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .risk{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line);background:var(--panel)}
+  .risk:last-child{border-bottom:none}
+  .risk .r-name{padding:18px 22px;font-size:14.5px;font-weight:600;border-right:1px solid var(--line)}
+  .risk .r-mit{padding:18px 22px;font-size:13.5px;color:var(--ink-dim)}
+  .risk .r-mit b{color:var(--accent);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:4px}
+  @media(max-width:680px){.risk{grid-template-columns:1fr}.risk .r-name{border-right:none;border-bottom:1px solid var(--line)}}
+
+  /* ---------- CONTACT ---------- */
+  #contact{border-top:1px solid var(--line)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;margin-top:18px;align-items:start}
+  @media(max-width:820px){.contact-grid{grid-template-columns:1fr;gap:36px}}
+  .contact-copy h2{margin-bottom:18px}
+  .contact-copy .lead{margin-bottom:24px}
+  .who{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+  .who-item{font-size:14px;color:var(--ink-dim);font-family:var(--mono);display:flex;gap:10px;align-items:flex-start}
+  .who-item .gt{color:var(--accent);font-weight:700}
+  form{display:flex;flex-direction:column;gap:16px;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:30px 28px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink-dim);text-transform:uppercase}
+  .field label .req{color:var(--accent)}
+  .field input,.field select,.field textarea{
+    background:var(--bg);border:1px solid var(--line-2);border-radius:8px;padding:12px 14px;
+    color:var(--ink);font-family:var(--sans);font-size:15px;transition:border-color .15s,box-shadow .15s;
+  }
+  .field textarea{resize:vertical;min-height:108px}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)
+  }
+  .field select{appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa3ad' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--danger)}
+  .err{font-size:12px;color:var(--danger);font-family:var(--mono);display:none}
+  .field.invalid .err{display:block}
+  form .btn-primary{margin-top:6px;width:100%;padding:15px}
+  form .btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+  .form-note{font-size:12px;color:var(--ink-faint);font-family:var(--mono);text-align:center}
+  .form-status{font-family:var(--mono);font-size:14px;padding:14px 16px;border-radius:8px;display:none;text-align:center}
+  .form-status.ok{display:block;background:rgba(74,222,128,.08);border:1px solid var(--accent-dim);color:var(--accent)}
+  .form-status.bad{display:block;background:rgba(229,83,75,.08);border:1px solid #5a2422;color:var(--danger)}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:40px 0;text-align:center}
+  .foot-mark{font-family:var(--mono);font-weight:700;font-size:22px;margin-bottom:12px}
+  .foot-mark .gt{color:var(--accent)}
+  .foot-tag{font-size:13px;color:var(--ink-faint);font-family:var(--mono);margin-bottom:16px}
+  .foot-meta{font-size:12px;color:var(--ink-faint)}
+  .confidential{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;margin-top:14px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">N&nbsp;<span class="gt">&gt;</span>&nbsp;1</div>
+    <div class="nav-links">
+      <a href="#thesis">Thesis</a>
+      <a href="#why-now">Why now</a>
+      <a href="#platform">Platform</a>
+      <a href="#trials">Trials</a>
+      <a href="#capital">Capital</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Repurposing · Clinical evidence · Patient scale</div>
+    <div class="mark">N&nbsp;<span class="gt">&gt;</span>&nbsp;1</div>
+    <p class="hero-sub">
+      Every testimonial is N=1. Every Reddit thread on BPC-157 is N=1. Every "it worked for me" is N=1.
+      We are the institution that takes substances out of anecdote and into <strong>evidence</strong> —
+      rigorous trials, real endpoints, ill patients, public results.
+    </p>
+    <div class="tagline">beyond the anecdote</div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Start a conversation</a>
+      <a href="#thesis" class="btn btn-ghost">Read the thesis</a>
+    </div>
+  </div>
+</header>
+
+<!-- THESIS -->
+<section id="thesis">
+  <div class="wrap">
+    <div class="sec-tag">The thesis</div>
+    <h2>A structural gap in the US drug system — and the technology to close it.</h2>
+    <p class="lead">
+      Substances with no patent moat — curcumin, BPC-157, low-dose naltrexone, allicin, NAC, urolithin A,
+      peptides, food-derived bioactives — cannot attract the <strong>$300M+</strong> required to prove they
+      work through the traditional FDA pathway. So they stay stuck: sold as supplements with vague claims, or
+      compounded in a regulatory gray zone. Meanwhile, the technology to compress drug discovery, patient
+      matching, and trial operations by <strong>60–80%</strong> exists today. The opportunity is to build the
+      full vertical as a single venture-scale company — and use the resulting evidence and patient base to
+      force regulatory reform.
+    </p>
+
+    <div class="transform">
+      <div class="tcard from">
+        <div class="label">N = 1</div>
+        <ul>
+          <li>Anecdote &amp; testimonial</li>
+          <li>Reddit threads, podcast guests</li>
+          <li>"It worked for me"</li>
+          <li>No endpoint, no rigor</li>
+        </ul>
+      </div>
+      <div class="tarrow">&gt;</div>
+      <div class="tcard to">
+        <div class="label">N &gt; 1</div>
+        <ul>
+          <li>Rigorous, powered RCTs</li>
+          <li>Real clinical endpoints</li>
+          <li>Ill patients, published results</li>
+          <li>Regulator-grade evidence</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section id="why-now">
+  <div class="wrap">
+    <div class="sec-tag">Why now</div>
+    <h2>An 18–30 month window is open. It will close.</h2>
+    <p class="lead">Six forces are aligned simultaneously — a configuration that did not exist two years ago and will not persist.</p>
+    <div class="grid-2">
+      <div class="force"><div class="f-head">Regulatory window open</div><div class="f-body">FDA Drug Repurposing RFI published May 2026 (Docket FDA-2026-N-4492); comments due <strong>June 11</strong>.</div></div>
+      <div class="force"><div class="f-head">Aligned principals</div><div class="f-body">Bhattacharya at NIH naming repurposing a priority; MAHA strategy directs FDA + NIH to invest in repurposing.</div></div>
+      <div class="force"><div class="f-head">Legislative momentum</div><div class="f-body">FDA Modernization Act 3.0 (S.355) passed Senate Dec 2025; PCAC peptide vote July 2026.</div></div>
+      <div class="force"><div class="f-head">AI compression proven</div><div class="f-body">Insilico: 18 months and $150K to preclinical (was 4–6 years); Exscientia/Recursion <strong>$688M</strong> merger validates the platform thesis.</div></div>
+      <div class="force"><div class="f-head">Trial infrastructure maturing</div><div class="f-body">DCT market projected <strong>$12B+</strong> by 2030; FDA accepts RWE-based synthetic controls.</div></div>
+      <div class="force"><div class="f-head">Window closing</div><div class="f-body">Leadership in flux; political support softening in competitive districts. The configuration is temporary.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section id="platform">
+  <div class="wrap">
+    <div class="sec-tag">What we build</div>
+    <h2>A five-layer vertically integrated platform.</h2>
+    <p class="lead">Each layer attacks one cost or time bottleneck in repurposing. Together they compound.</p>
+    <div class="layers">
+      <div class="layer"><div class="num">01</div><div class="body">
+        <div class="l-title">AI Repurposing Discovery Engine</div>
+        <div class="l-desc">Knowledge graph + LLM + structural biology, ranking candidates by predicted success at specific disease endpoints.</div>
+        <div class="l-metric">Compresses discovery from 4–6 yr → ~1 yr</div>
+      </div></div>
+      <div class="layer"><div class="num">02</div><div class="body">
+        <div class="l-title">Patient Matching + Recruitment</div>
+        <div class="l-desc">EHR + claims mining and opt-in disease registries for national reach.</div>
+        <div class="l-metric">Recruitment 10× faster than the CRO model</div>
+      </div></div>
+      <div class="layer"><div class="num">03</div><div class="body">
+        <div class="l-title">Decentralized Trial Operations</div>
+        <div class="l-desc">One product, one data model: eConsent, randomization, eCRF, ePRO, wearables, telehealth, AE reporting.</div>
+        <div class="l-metric">Replaces the CRO middle layer · 60–80% lower cost</div>
+      </div></div>
+      <div class="layer"><div class="num">04</div><div class="body">
+        <div class="l-title">Evidence + Synthetic Controls</div>
+        <div class="l-desc">RWE-driven control arms, already FDA-accepted in oncology and rare disease.</div>
+        <div class="l-metric">Reduces required N by 30–50%</div>
+      </div></div>
+      <div class="layer"><div class="num">05</div><div class="body">
+        <div class="l-title">Patient Access &amp; Delivery</div>
+        <div class="l-desc">Compounding pharmacy + telehealth dispensing under valid prescription.</div>
+        <div class="l-metric">The political moat — patients become the constituency</div>
+      </div></div>
+    </div>
+    <div class="flywheel">
+      The flywheel: every trial improves the AI · every match improves recruitment · every outcome strengthens
+      the synthetic-control library · every delivered therapy expands the registry. <strong>Network effects in clinical research.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="wrap">
+    <div class="sec-tag">Three software products</div>
+    <h2>Built for ourselves first. Licensable once the cost advantage is public.</h2>
+    <div class="products">
+      <div class="product"><div class="p-idx">01</div>
+        <h3>Repurposing Discovery Engine</h3>
+        <p>Knowledge-graph + LLM + structural-biology pipeline tuned specifically for repurposing — not de-novo design — against indications we can actually run trials in.</p>
+      </div>
+      <div class="product"><div class="p-idx">02</div>
+        <h3>Patient Matching + Recruitment</h3>
+        <p>Opt-in registries across 3–5 indications with EHR/claims integration. Target: 100K patients across registries by end of Year 2.</p>
+      </div>
+      <div class="product"><div class="p-idx">03</div>
+        <h3>Decentralized Trial OS</h3>
+        <p>One unified system replacing the Medable + Castor + Veeva + Florence integration sponsors pay CROs to operate. Used internally, then licensed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIALS -->
+<section id="trials">
+  <div class="wrap">
+    <div class="sec-tag">Year 1 portfolio</div>
+    <h2>Three trials — a quick win, a medium bet, a long bet.</h2>
+    <p class="lead">Picked across three evidence maturities so a single negative result doesn't crater the institution. A definitive null is still movement-defining.</p>
+    <div class="trials">
+      <div class="trial">
+        <div class="trial-top">
+          <div class="substance">Aged garlic extract <span class="ind">/ coronary artery calcification</span></div>
+          <div class="cost">$7–10M</div>
+        </div>
+        <div class="design">24-month, n=300, statin-treated subclinical atherosclerosis (CAC 1–400); primary endpoint annualized CAC progression by CT.</div>
+        <div class="win"><b>Win condition</b>Confirms 30%+ relative reduction → JAMA/Circulation publication; or definitively kills the claim.</div>
+      </div>
+      <div class="trial">
+        <div class="trial-top">
+          <div class="substance">Curcumin (Theracurmin) <span class="ind">/ ulcerative colitis</span></div>
+          <div class="cost">$8–12M</div>
+        </div>
+        <div class="design">12-month, n=300, double-blind RCT as add-on to mesalamine; primary endpoint endoscopic remission.</div>
+        <div class="win"><b>Win condition</b>Lands curcumin in IBD guidelines — changing prescribing for ~1.5M Americans — or kills it definitively.</div>
+      </div>
+      <div class="trial">
+        <div class="trial-top">
+          <div class="substance">Low-dose naltrexone <span class="ind">/ long COVID with PEM</span></div>
+          <div class="cost">$10–15M</div>
+        </div>
+        <div class="design">6-month, n=300, double-blind LDN 4.5mg vs placebo; primary endpoint 2-day CPET response or DSQ-PEM.</div>
+        <div class="win"><b>Win condition</b>First FDA-quality evidence in a category with millions of organized, frustrated patients.</div>
+      </div>
+    </div>
+    <div class="trial-total">Total Y1–3 trial commitment: <b>$25–37M</b> &nbsp;·&nbsp; achievable at $20–28M with pragmatic designs + AMC partnerships</div>
+  </div>
+</section>
+
+<!-- STRUCTURE / LANES -->
+<section id="structure">
+  <div class="wrap">
+    <div class="sec-tag">Structure &amp; discipline</div>
+    <h2>Four entities, one mission. Win first, ask permission later — only where it's legal.</h2>
+    <p class="lead">
+      A C-Corp PBC holds the platform IP and capital; a wholly-owned pharmacy is the regulator-facing surface; a
+      platform LLC isolates licensable, HIPAA-bound IP; and a paired 501(c)(3)/(c)(4) Foundation runs the
+      credibility flank and lobbies. The structure absorbs regulatory friction without bankrupting the operating
+      company. We hold strict lane discipline:
+    </p>
+    <div class="lanes">
+      <div class="lane green"><h4>Push hard</h4><ul>
+        <li>IIT-style trials at AMCs on generic drugs</li>
+        <li>Build the DCT platform; use it ourselves</li>
+        <li>Opt-in patient registries with matching</li>
+        <li>Compounded therapeutics under valid Rx (on-bulks-list)</li>
+        <li>Sharp public communication, preprints, op-eds</li>
+      </ul></div>
+      <div class="lane yellow"><h4>Gray zone — play smart</h4><ul>
+        <li>RWE as synthetic control arms</li>
+        <li>Async telehealth for non-controlled</li>
+        <li>Right-to-Try expansion paths</li>
+        <li>With standing regulatory counsel, always</li>
+      </ul></div>
+      <div class="lane red"><h4>Never</h4><ul>
+        <li>Disease claims on unapproved drugs</li>
+        <li>Sterile compounding without licensure</li>
+        <li>Trials without IRB / IND when required</li>
+        <li>Compounding patent-protected molecules at scale</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPITAL -->
+<section id="capital">
+  <div class="wrap">
+    <div class="sec-tag">Capital plan</div>
+    <h2>Seed to a <span class="gt">$1B+</span> company in 5–7 years.</h2>
+    <p class="lead">Comparables: Insilico ($1B+), Recursion ($2B+ post-Exscientia), Zoe ($250M), Cost Plus Drugs ($1B+ revenue run rate).</p>
+    <div class="capital">
+      <div class="cap"><div class="c-yr">Year 1</div><div class="c-amt">$15–25M</div><div class="c-meta">Seed + Series A<br>40–50 FTE<br>2 trials, 1 registry</div></div>
+      <div class="cap"><div class="c-yr">Year 2–3</div><div class="c-amt">$50–100M</div><div class="c-meta">Series B<br>120–200 FTE<br>8–12 parallel trials</div></div>
+      <div class="cap"><div class="c-yr">Year 4–5</div><div class="c-amt">$200–500M</div><div class="c-meta">Series C+<br>500+ FTE<br>Platform licensing</div></div>
+      <div class="cap"><div class="c-yr">Year 6–7</div><div class="c-amt">$1B+</div><div class="c-meta">Cash-flow positive or<br>IPO / strategic exit</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section id="risks">
+  <div class="wrap">
+    <div class="sec-tag">Risks, named</div>
+    <h2>Every failure mode in the category has a precedent. So does every mitigation.</h2>
+    <div class="risks">
+      <div class="risk"><div class="r-name">Single-donor capture (the NUSI failure mode)</div><div class="r-mit"><b>Mitigation</b>Open Science Guidelines from day 1; pre-commit to publishing negatives; diversify funders by Y3.</div></div>
+      <div class="risk"><div class="r-name">MAHA capture / crank-adjacency</div><div class="r-mit"><b>Mitigation</b>Explicit pro-vaccine, pro-RCT masthead; correct factual errors publicly; refuse co-platforming with discredited figures.</div></div>
+      <div class="risk"><div class="r-name">Founder-vs-brand civil war (the Cochrane problem)</div><div class="r-mit"><b>Mitigation</b>Separate methodology from any individual from day 1; codified dissent rights; co-equal voices.</div></div>
+      <div class="risk"><div class="r-name">Commercial COI eroding c3 credibility</div><div class="r-mit"><b>Mitigation</b>Four-entity wall; pre-published sponsor lists; royalty caps with surplus to mission.</div></div>
+      <div class="risk"><div class="r-name">FDA criminal referral on gray-zone tactics</div><div class="r-mit"><b>Mitigation</b>Strict green/yellow/red lane discipline; standing regulatory counsel; never cross into red.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-copy">
+        <div class="sec-tag">Get in touch</div>
+        <h2>This is the artifact that begins the work.</h2>
+        <p class="lead">If the inequality lit something up for you, reach out. We're having the first conversations now.</p>
+        <div class="who">
+          <div class="who-item"><span class="gt">&gt;</span> Potential co-founders — CSO, regulatory, clinical ops, comms, policy</div>
+          <div class="who-item"><span class="gt">&gt;</span> Board members &amp; advisors — nonprofit governance, platform economics, PBC structure</div>
+          <div class="who-item"><span class="gt">&gt;</span> Investors — pre-seed and Series A</div>
+        </div>
+      </div>
+
+      <form id="contact-form" novalidate>
+        <div class="field" data-field="name">
+          <label for="name">Name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+          <span class="err">Please enter your name.</span>
+        </div>
+        <div class="field" data-field="email">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+          <span class="err">Please enter a valid email.</span>
+        </div>
+        <div class="field" data-field="org">
+          <label for="org">Organization</label>
+          <input type="text" id="org" name="org" autocomplete="organization">
+        </div>
+        <div class="field" data-field="role">
+          <label for="role">I'm reaching out as <span class="req">*</span></label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Select one…</option>
+            <option>Potential co-founder</option>
+            <option>Board member / advisor</option>
+            <option>Investor</option>
+            <option>Clinical / scientific collaborator</option>
+            <option>Press / policy</option>
+            <option>Other</option>
+          </select>
+          <span class="err">Please select one.</span>
+        </div>
+        <div class="field" data-field="message">
+          <label for="message">Message <span class="req">*</span></label>
+          <textarea id="message" name="message" required placeholder="What part of this resonates — and what's your background?"></textarea>
+          <span class="err">Please add a short message.</span>
+        </div>
+        <div class="form-status" id="form-status"></div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">Send message</button>
+        <div class="form-note">Goes directly to paul@ngtone.com · No list, no automation.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">N&nbsp;<span class="gt">&gt;</span>&nbsp;1</div>
+    <div class="foot-tag">beyond the anecdote</div>
+    <div class="foot-meta">NGTOne · ngtone.com</div>
+    <div class="confidential">Confidential — for prospective co-founders, board members &amp; investors</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ====== CONFIG ======
+  // n8n instance: https://ngtone.app.n8n.cloud/
+  // Confirm this matches your Webhook node's Production URL path before going live.
+  var WEBHOOK_URL = "https://ngtone.app.n8n.cloud/webhook/contact";
+
+  var form = document.getElementById("contact-form");
+  var statusEl = document.getElementById("form-status");
+  var btn = document.getElementById("submit-btn");
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function fieldEl(name){ return form.querySelector('[data-field="'+name+'"]'); }
+
+  function validate(){
+    var ok = true;
+    [["name",function(v){return v.trim().length>0;}],
+     ["email",function(v){return emailRe.test(v.trim());}],
+     ["role",function(v){return v.trim().length>0;}],
+     ["message",function(v){return v.trim().length>0;}]
+    ].forEach(function(pair){
+      var f = fieldEl(pair[0]);
+      var input = f.querySelector("input,select,textarea");
+      if(!pair[1](input.value)){ f.classList.add("invalid"); ok=false; }
+      else { f.classList.remove("invalid"); }
+    });
+    return ok;
+  }
+
+  // clear error state as the user fixes a field
+  form.querySelectorAll("input,select,textarea").forEach(function(el){
+    el.addEventListener("input", function(){
+      var f = el.closest(".field");
+      if(f) f.classList.remove("invalid");
+    });
+  });
+
+  function setStatus(kind,msg){
+    statusEl.className = "form-status " + kind;
+    statusEl.textContent = msg;
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    statusEl.className = "form-status"; statusEl.textContent="";
+    if(!validate()){ setStatus("bad","Please fix the highlighted fields."); return; }
+
+    var payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      organization: form.org.value.trim(),
+      role: form.role.value,
+      message: form.message.value.trim(),
+      source: "ngtone.com landing page",
+      submitted_at: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    var orig = btn.textContent;
+    btn.textContent = "Sending…";
+
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      return res;
+    })
+    .then(function(){
+      form.reset();
+      setStatus("ok","Thank you — your message is on its way. We'll be in touch.");
+      btn.textContent = "Sent ✓";
+      setTimeout(function(){ btn.disabled=false; btn.textContent=orig; }, 4000);
+    })
+    .catch(function(err){
+      console.error(err);
+      setStatus("bad","Something went wrong sending the form. Email paul@ngtone.com directly and we'll fix it.");
+      btn.disabled = false;
+      btn.textContent = orig;
+    });
+  });
+})();
+</script>
+</body>
+</html>
