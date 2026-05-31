@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>N &gt; 1 — Beyond the anecdote</title>
-<meta name="description" content="A vertically integrated software-and-clinical-evidence company that takes substances out of N=1 anecdote and into N&gt;1 evidence — rigorous trials, real endpoints, ill patients, public results.">
+<meta name="description" content="A vertically integrated software company that takes longevity and drug repurposing out of N=1 anecdote and into N&gt;1 evidence — rigorous trials, real endpoints, ill patients, public results. We sell the rails, not the substance, and we start in the aging gut.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="N &gt; 1 — Beyond the anecdote">
-<meta property="og:description" content="Taking substances out of N=1 anecdote and into N&gt;1 evidence.">
+<meta property="og:description" content="From biohacker to legit — taking longevity out of N=1 anecdote and into N&gt;1 evidence.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,12 +69,6 @@
   .nav-links{display:flex;gap:30px;font-size:13.5px;color:var(--ink-dim)}
   .nav-links a{transition:color .15s}
   .nav-links a:hover{color:var(--ink)}
-  .nav-cta{
-    font-family:var(--mono);font-size:13px;font-weight:500;
-    border:1px solid var(--line-2);padding:8px 16px;border-radius:6px;color:var(--ink);
-    transition:all .15s;
-  }
-  .nav-cta:hover{border-color:var(--accent);color:var(--accent)}
   @media(max-width:760px){.nav-links{display:none}}
 
   /* ---------- HERO ---------- */
@@ -107,8 +101,6 @@
     font-family:var(--mono);font-size:14px;font-weight:500;padding:13px 26px;border-radius:7px;
     cursor:pointer;transition:all .15s;border:1px solid var(--line-2);background:transparent;color:var(--ink);
   }
-  .btn-primary{background:var(--accent);color:#04150b;border-color:var(--accent);font-weight:700}
-  .btn-primary:hover{box-shadow:0 0 0 3px var(--accent-dim);transform:translateY(-1px)}
   .btn-ghost:hover{border-color:var(--ink-dim)}
 
   /* ---------- SECTION SCAFFOLD ---------- */
@@ -146,7 +138,7 @@
     .tarrow{transform:rotate(90deg);padding:4px 0}
   }
 
-  /* ---------- WHY NOW TABLE ---------- */
+  /* ---------- WHY NOW / FORCE GRID ---------- */
   .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:42px}
   .force{
     border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:22px 22px;
@@ -180,14 +172,15 @@
   }
   .flywheel strong{color:var(--ink)}
 
-  /* ---------- PRODUCTS ---------- */
+  /* ---------- CARDS (products / team / structure) ---------- */
   .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:42px}
   .product{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:26px 24px;position:relative;overflow:hidden}
-  .product .p-idx{font-family:var(--mono);font-size:42px;font-weight:700;color:var(--line-2);position:absolute;top:14px;right:20px;line-height:1}
-  .product h3{font-size:17px;font-weight:600;margin-bottom:11px;padding-right:40px}
+  .product .p-idx{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:10px}
+  .product .p-open{font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent-dim);border-radius:5px;padding:2px 7px;letter-spacing:.08em;text-transform:uppercase;position:absolute;top:20px;right:18px}
+  .product h3{font-size:17px;font-weight:600;margin-bottom:11px}
   .product p{font-size:14px;color:var(--ink-dim)}
 
-  /* ---------- TRIALS ---------- */
+  /* ---------- SEQUENCING (approach) ---------- */
   .trials{margin-top:42px;display:flex;flex-direction:column;gap:16px}
   .trial{
     border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:26px 26px;
@@ -203,50 +196,10 @@
   .trial-total{font-family:var(--mono);font-size:15px;color:var(--ink);margin-top:6px;text-align:right}
   .trial-total b{color:var(--accent)}
 
-  /* ---------- CAPITAL ---------- */
-  .capital{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;margin-top:42px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .cap{padding:24px 22px;border-right:1px solid var(--line);background:var(--panel)}
-  .cap:last-child{border-right:none}
-  .cap .c-yr{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-  .cap .c-amt{font-size:24px;font-weight:700;margin-bottom:10px}
-  .cap .c-meta{font-size:13px;color:var(--ink-dim);line-height:1.7}
-  @media(max-width:680px){.capital{grid-template-columns:1fr 1fr}.cap{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}}
-
-  /* ---------- LANES ---------- */
-  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
-  .lane{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--panel)}
-  .lane h4{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;font-weight:700}
-  .lane.green{border-color:var(--accent-dim)} .lane.green h4{color:var(--accent)}
-  .lane.yellow h4{color:var(--warn)} .lane.yellow{border-color:#5a4a1a}
-  .lane.red h4{color:var(--danger)} .lane.red{border-color:#5a2422}
-  .lane ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-  .lane li{font-size:13px;color:var(--ink-dim);padding-left:16px;position:relative}
-  .lane li::before{content:"▪";position:absolute;left:0;font-size:9px;top:4px}
-  .lane.green li::before{color:var(--accent)}
-  .lane.yellow li::before{color:var(--warn)}
-  .lane.red li::before{color:var(--danger)}
-  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
-
-  /* ---------- RISKS ---------- */
-  .risks{margin-top:42px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .risk{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line);background:var(--panel)}
-  .risk:last-child{border-bottom:none}
-  .risk .r-name{padding:18px 22px;font-size:14.5px;font-weight:600;border-right:1px solid var(--line)}
-  .risk .r-mit{padding:18px 22px;font-size:13.5px;color:var(--ink-dim)}
-  .risk .r-mit b{color:var(--accent);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:4px}
-  @media(max-width:680px){.risk{grid-template-columns:1fr}.risk .r-name{border-right:none;border-bottom:1px solid var(--line)}}
-
-  /* ---------- CONTACT ---------- */
-  #contact{border-top:1px solid var(--line)}
-  .contact-cta{max-width:680px;margin:0 auto;text-align:center}
-  .contact-cta .sec-tag{justify-content:center}
-  .contact-cta .lead{margin:0 auto 26px}
-  .who{display:flex;flex-direction:column;gap:12px;max-width:560px;margin:0 auto 30px;text-align:left}
-  .who-item{font-size:14px;color:var(--ink-dim);font-family:var(--mono);display:flex;gap:10px;align-items:flex-start}
-  .who-item .gt{color:var(--accent);font-weight:700}
-  .x-cta{display:inline-flex;align-items:center;gap:10px}
-  .x-cta svg{width:18px;height:18px}
-  .form-note{font-size:12px;color:var(--ink-faint);font-family:var(--mono);text-align:center;margin-top:16px}
+  /* ---------- CLOSE ---------- */
+  .close{max-width:720px;margin:0 auto;text-align:center}
+  .close .sec-tag{justify-content:center}
+  .close .lead{margin:0 auto}
 
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--line);padding:40px 0;text-align:center}
@@ -266,25 +219,23 @@
       <a href="#thesis">Thesis</a>
       <a href="#why-now">Why now</a>
       <a href="#platform">Platform</a>
-      <a href="#trials">Trials</a>
-      <a href="#capital">Capital</a>
+      <a href="#approach">Approach</a>
+      <a href="#team">Team</a>
     </div>
-    <a href="#contact" class="nav-cta">Get in touch</a>
   </div>
 </nav>
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">Repurposing · Clinical evidence · Patient scale</div>
+    <div class="eyebrow">Longevity · Repurposing · Clinical evidence</div>
     <div class="mark">N&nbsp;<span class="gt">&gt;</span>&nbsp;1</div>
     <p class="hero-sub">
-      Every testimonial is N=1. Every Reddit thread on BPC-157 is N=1. Every "it worked for me" is N=1.
-      We are the institution that takes substances out of anecdote and into <strong>evidence</strong> —
-      rigorous trials, real endpoints, ill patients, public results.
+      Every Blueprint protocol is N=1. Every Reddit thread on rapamycin, NAD, or a SIBO cure is N=1.
+      Every "it worked for me" is N=1. We take longevity from <strong>biohacker to legit</strong> —
+      out of anecdote and into <strong>evidence</strong>: rigorous trials, real endpoints, ill patients, public results.
     </p>
     <div class="tagline">beyond the anecdote</div>
     <div class="hero-btns">
-      <a href="#contact" class="btn btn-primary">Start a conversation</a>
       <a href="#thesis" class="btn btn-ghost">Read the thesis</a>
     </div>
   </div>
@@ -294,15 +245,18 @@
 <section id="thesis">
   <div class="wrap">
     <div class="sec-tag">The thesis</div>
-    <h2>A structural gap in the US drug system — and the technology to close it.</h2>
+    <h2>A structural gap in the drug system — and the technology to close it.</h2>
     <p class="lead">
-      Substances with no patent moat — curcumin, BPC-157, low-dose naltrexone, allicin, NAC, urolithin A,
-      peptides, food-derived bioactives — cannot attract the <strong>$300M+</strong> required to prove they
-      work through the traditional FDA pathway. So they stay stuck: sold as supplements with vague claims, or
-      compounded in a regulatory gray zone. Meanwhile, the technology to compress drug discovery, patient
-      matching, and trial operations by <strong>60–80%</strong> exists today. The opportunity is to build the
-      full vertical as a single venture-scale company — and use the resulting evidence and patient base to
-      force regulatory reform.
+      Substances with no patent moat — curcumin, berberine, rapamycin, low-dose naltrexone, NAC, urolithin A,
+      peptides, food-derived bioactives — can't attract the <strong>$300M+</strong> a traditional FDA approval
+      costs, so they stay stuck: sold as supplements with vague claims, or traded as protocols in a gray zone.
+      Nowhere is this worse than in <strong>longevity and gut health</strong>, where the loudest anecdotes meet the
+      thinnest evidence and a desperate, self-funding audience runs millions of uncontrolled experiments. The trap
+      is trying to monetize the substance — you can't; the value leaks to generic makers and supplement sellers.
+      So we don't. <strong>We build the software stack that makes a rigorous repurposing trial radically cheaper
+      and faster, prove it by running our own — starting in the aging gut — and sell the stack and the speed to
+      everyone else.</strong> The evidence is the credibility engine; the software is the business. Longevity is
+      the banner; the gut is where we plant the flag first.
     </p>
 
     <div class="transform">
@@ -310,7 +264,7 @@
         <div class="label">N = 1</div>
         <ul>
           <li>Anecdote &amp; testimonial</li>
-          <li>Reddit threads, podcast guests</li>
+          <li>Reddit, Blueprint, podcast guests</li>
           <li>"It worked for me"</li>
           <li>No endpoint, no rigor</li>
         </ul>
@@ -337,11 +291,11 @@
     <p class="lead">Six forces are aligned simultaneously — a configuration that did not exist two years ago and will not persist.</p>
     <div class="grid-2">
       <div class="force"><div class="f-head">Regulatory window open</div><div class="f-body">FDA Drug Repurposing RFI published May 2026 (Docket FDA-2026-N-4492); comments due <strong>June 11</strong>.</div></div>
-      <div class="force"><div class="f-head">Aligned principals</div><div class="f-body">Bhattacharya at NIH naming repurposing a priority; MAHA strategy directs FDA + NIH to invest in repurposing.</div></div>
-      <div class="force"><div class="f-head">Legislative momentum</div><div class="f-body">FDA Modernization Act 3.0 (S.355) passed Senate Dec 2025; PCAC peptide vote July 2026.</div></div>
+      <div class="force"><div class="f-head">Federal momentum</div><div class="f-body">Drug repurposing named a federal priority; FDA Modernization Act 3.0 (S.355) passed the Senate Dec 2025; PCAC peptide vote July 2026.</div></div>
       <div class="force"><div class="f-head">AI compression proven</div><div class="f-body">Insilico: 18 months and $150K to preclinical (was 4–6 years); Exscientia/Recursion <strong>$688M</strong> merger validates the platform thesis.</div></div>
+      <div class="force"><div class="f-head">Longevity goes mainstream</div><div class="f-body">Consumer aging-biomarker testing at scale; organ-specific aging clocks validated. A large, self-funding population is already measuring itself.</div></div>
+      <div class="force"><div class="f-head">Gut–aging science maturing</div><div class="f-body">Dysbiosis named among the <strong>Hallmarks of Aging</strong> (2023); gut-barrier and motility decline increasingly tied to age — a testable bridge from aging to GI disease.</div></div>
       <div class="force"><div class="f-head">Trial infrastructure maturing</div><div class="f-body">DCT market projected <strong>$12B+</strong> by 2030; FDA accepts RWE-based synthetic controls.</div></div>
-      <div class="force"><div class="f-head">Window closing</div><div class="f-body">Leadership in flux; political support softening in competitive districts. The configuration is temporary.</div></div>
     </div>
   </div>
 </section>
@@ -350,181 +304,152 @@
 <section id="platform">
   <div class="wrap">
     <div class="sec-tag">What we build</div>
-    <h2>A five-layer vertically integrated platform.</h2>
-    <p class="lead">Each layer attacks one cost or time bottleneck in repurposing. Together they compound.</p>
+    <h2>A four-layer vertically integrated stack.</h2>
+    <p class="lead">Each layer attacks one cost or time bottleneck in repurposing. Integrated on one data model, they are the product we sell.</p>
     <div class="layers">
       <div class="layer"><div class="num">01</div><div class="body">
         <div class="l-title">AI Repurposing Discovery Engine</div>
-        <div class="l-desc">Knowledge graph + LLM + structural biology, ranking candidates by predicted success at specific disease endpoints.</div>
+        <div class="l-desc">Knowledge graph + LLM + structural biology, ranking candidates by predicted success at specific disease endpoints — tuned for repurposing, starting with geroscience and the gut.</div>
         <div class="l-metric">Compresses discovery from 4–6 yr → ~1 yr</div>
       </div></div>
       <div class="layer"><div class="num">02</div><div class="body">
         <div class="l-title">Patient Matching + Recruitment</div>
-        <div class="l-desc">EHR + claims mining and opt-in disease registries for national reach.</div>
+        <div class="l-desc">EHR + claims mining and opt-in registries for national reach — plus direct-to-participant recruitment from the longevity and gut communities the CRO model can't touch.</div>
         <div class="l-metric">Recruitment 10× faster than the CRO model</div>
       </div></div>
       <div class="layer"><div class="num">03</div><div class="body">
-        <div class="l-title">Decentralized Trial Operations</div>
-        <div class="l-desc">One product, one data model: eConsent, randomization, eCRF, ePRO, wearables, telehealth, AE reporting.</div>
+        <div class="l-title">Decentralized Trial Operating System</div>
+        <div class="l-desc">One product, one data model: eConsent, randomization, eCRF, ePRO, wearables, telehealth, AE reporting, submission generation. Replaces the Medable + Castor + Veeva + Florence stitch-up.</div>
         <div class="l-metric">Replaces the CRO middle layer · 60–80% lower cost</div>
       </div></div>
       <div class="layer"><div class="num">04</div><div class="body">
-        <div class="l-title">Evidence + Synthetic Controls</div>
-        <div class="l-desc">RWE-driven control arms, already FDA-accepted in oncology and rare disease.</div>
+        <div class="l-title">Evidence + Biomarkers + Synthetic Controls</div>
+        <div class="l-desc">RWE-driven control arms plus harmonized aging and gut-age biomarker panels — epigenetic clocks, proteomic and functional measures, wearables and CGM.</div>
         <div class="l-metric">Reduces required N by 30–50%</div>
-      </div></div>
-      <div class="layer"><div class="num">05</div><div class="body">
-        <div class="l-title">Patient Access &amp; Delivery</div>
-        <div class="l-desc">Compounding pharmacy + telehealth dispensing under valid prescription.</div>
-        <div class="l-metric">The political moat — patients become the constituency</div>
       </div></div>
     </div>
     <div class="flywheel">
-      The flywheel: every trial improves the AI · every match improves recruitment · every outcome strengthens
-      the synthetic-control library · every delivered therapy expands the registry. <strong>Network effects in clinical research.</strong>
+      The flywheel: every trial improves the AI · every match sharpens recruitment · every outcome grows the
+      synthetic-control library · every result expands the registry — <strong>network effects in clinical research</strong>.
+      We run our own trials to prove the cost and speed advantage in public, then license the stack to every other
+      sponsor: <strong>we sell the rails, not the substance</strong>, and never take a margin on a molecule.
+    </div>
+    <div class="flywheel">
+      <strong>The measurement edge.</strong> Aging has no single endpoint, so the stack carries a biomarker layer.
+      A <em>validated</em> gut-age panel is both our beachhead instrument and a product the field badly lacks — today's "gut age" tests are exactly the unvalidated landscape we exist to fix.
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products">
+<!-- APPROACH -->
+<section id="approach">
   <div class="wrap">
-    <div class="sec-tag">Three software products</div>
-    <h2>Built for ourselves first. Licensable once the cost advantage is public.</h2>
-    <div class="products">
-      <div class="product"><div class="p-idx">01</div>
-        <h3>Repurposing Discovery Engine</h3>
-        <p>Knowledge-graph + LLM + structural-biology pipeline tuned specifically for repurposing — not de-novo design — against indications we can actually run trials in.</p>
-      </div>
-      <div class="product"><div class="p-idx">02</div>
-        <h3>Patient Matching + Recruitment</h3>
-        <p>Opt-in registries across 3–5 indications with EHR/claims integration. Target: 100K patients across registries by end of Year 2.</p>
-      </div>
-      <div class="product"><div class="p-idx">03</div>
-        <h3>Decentralized Trial OS</h3>
-        <p>One unified system replacing the Medable + Castor + Veeva + Florence integration sponsors pay CROs to operate. Used internally, then licensed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRIALS -->
-<section id="trials">
-  <div class="wrap">
-    <div class="sec-tag">Trial portfolio</div>
-    <h2>Three classes of candidate, one selection framework.</h2>
-    <p class="lead">We don't choose trials by anecdote. We choose across substance class and evidence maturity, so a single null result strengthens the institution instead of cratering it. The first portfolio is built with our founding CSO.</p>
+    <div class="sec-tag">Approach</div>
+    <h2>Credibility first. We earn the right to the hard problems.</h2>
+    <p class="lead">We don't pick candidates by anecdote, and we don't lead with the highest-demand category. We lead with the one that most strengthens the brand — because the brand is the moat. The first portfolio is chosen with our founding CSO.</p>
     <div class="trials">
       <div class="trial">
         <div class="trial-top">
-          <div class="substance">Supplement / nutraceutical <span class="ind">/ the quick win</span></div>
-          <div class="cost">low friction</div>
+          <div class="substance">Functional-GI, validated endpoint <span class="ind">/ first</span></div>
+          <div class="cost">lowest exposure</div>
         </div>
-        <div class="design">Lowest regulatory exposure — sold today as supplements, so the trial itself carries little legal risk. Agents with real mechanistic rationale and an existing human signal, run as pragmatic-endpoint RCTs.</div>
-        <div class="win"><b>Why it matters</b>The fastest path to a publishable, guideline-relevant result — or a definitive null that still moves the field.</div>
+        <div class="design">A clean off-patent generic or nutraceutical in a functional-GI indication with a validated patient-reported endpoint — <em>not</em> the contested SIBO breath-test terrain, and <em>not</em> a peptide.</div>
+        <div class="win"><b>Why this first</b>Lowest legal exposure, a hard publishable endpoint, and it sits directly on the gut-aging thesis. Banks the "these people do real science" reputation before anything contested.</div>
       </div>
       <div class="trial">
         <div class="trial-top">
-          <div class="substance">Repurposed generic drug <span class="ind">/ the medium bet</span></div>
-          <div class="cost">IIT at AMC</div>
+          <div class="substance">Gut-aging mechanisms <span class="ind">/ then</span></div>
+          <div class="cost">community demand</div>
         </div>
-        <div class="design">Investigator-initiated trials at academic medical centers: off-patent, established safety, a hard clinical endpoint, an organized patient population.</div>
-        <div class="win"><b>Why it matters</b>Where rigorous evidence directly changes prescribing — on a trial model that's already proven.</div>
+        <div class="design">Motility, barrier, and microbiome — including SIBO/IMO once its diagnostic terrain is on firmer footing.</div>
+        <div class="win"><b>Why next</b>Where the biggest community demand sits — entered once the brand carries the rigor to survive the methodology debates.</div>
       </div>
       <div class="trial">
         <div class="trial-top">
-          <div class="substance">Peptide <span class="ind">/ the high-upside bet</span></div>
+          <div class="substance">Peptides &amp; systemic geroprotectors <span class="ind">/ later</span></div>
           <div class="cost">PCAC-gated</div>
         </div>
-        <div class="design">The frontier: enormous patient demand, almost no regulator-grade evidence, and a regulatory path that opens with the PCAC ruling.</div>
-        <div class="win"><b>Why it matters</b>The first credible RCT in the category defines it — the highest-leverage evidence we can produce.</div>
+        <div class="design">The frontier: enormous demand, almost no regulator-grade evidence, and a path that opens with the PCAC ruling.</div>
+        <div class="win"><b>Why last</b>Highest demand and highest credibility risk — entered only once the brand is trusted and the regulatory path resolves.</div>
       </div>
     </div>
-    <div class="trial-total">Each trial in the <b>$2–10M</b> range against a traditional <b>$300M+</b> path — the compression is the thesis.</div>
+    <div class="trial-total">Each pragmatic trial targets the <b>$2–10M</b> range against a traditional <b>$300M+</b> path — the compression is both the proof and the pitch.</div>
   </div>
 </section>
 
-<!-- STRUCTURE / LANES -->
+<!-- STRUCTURE -->
 <section id="structure">
   <div class="wrap">
-    <div class="sec-tag">Structure &amp; discipline</div>
-    <h2>Four entities, one mission. Win first, ask permission later — only where it's legal.</h2>
+    <div class="sec-tag">Structure</div>
+    <h2>Two organizations. Both run trials.</h2>
     <p class="lead">
-      A C-Corp PBC holds the platform IP and capital; a wholly-owned pharmacy is the regulator-facing surface; a
-      platform LLC isolates licensable, HIPAA-bound IP; and a paired 501(c)(3)/(c)(4) Foundation runs the
-      credibility flank and lobbies. The structure absorbs regulatory friction without bankrupting the operating
-      company. We hold strict lane discipline:
+      The split is <em>why a trial exists and who funds it</em>, not who operates it. Both run on the same stack;
+      neither ever takes a margin on a substance — the line that keeps the evidence credible.
     </p>
-    <div class="lanes">
-      <div class="lane green"><h4>Push hard</h4><ul>
-        <li>IIT-style trials at AMCs on generic drugs</li>
-        <li>Build the DCT platform; use it ourselves</li>
-        <li>Opt-in patient registries with matching</li>
-        <li>Compounded therapeutics under valid Rx (on-bulks-list)</li>
-        <li>Sharp public communication, preprints, op-eds</li>
-      </ul></div>
-      <div class="lane yellow"><h4>Gray zone — play smart</h4><ul>
-        <li>RWE as synthetic control arms</li>
-        <li>Async telehealth for non-controlled</li>
-        <li>Right-to-Try expansion paths</li>
-        <li>With standing regulatory counsel, always</li>
-      </ul></div>
-      <div class="lane red"><h4>Never</h4><ul>
-        <li>Disease claims on unapproved drugs</li>
-        <li>Sterile compounding without licensure</li>
-        <li>Trials without IRB / IND when required</li>
-        <li>Compounding patent-protected molecules at scale</li>
-      </ul></div>
+    <div class="grid-2">
+      <div class="force"><div class="f-head">NGTOne Inc · C-Corp PBC</div><div class="f-body">The business: the platform, IP, registry data, and the trials with a <strong>business case</strong>, on venture equity and SaaS revenue. A public-benefit charter protects mission-aligned decisions.</div></div>
+      <div class="force"><div class="f-head">N &gt; 1 Foundation · 501(c)(3)/(c)(4)</div><div class="f-body">The independent evidence flank: the trials with only a <strong>truth case</strong> — the nulls, the debunks, the methodology exemplars no sponsor will fund — on tax-deductible philanthropy, with its own governance.</div></div>
     </div>
   </div>
 </section>
 
-<!-- CAPITAL -->
-<section id="capital">
+<!-- DISCIPLINE -->
+<section id="discipline">
   <div class="wrap">
-    <div class="sec-tag">Capital plan</div>
-    <h2>Seed to a <span class="gt">$1B+</span> company in 5–7 years.</h2>
-    <p class="lead">Comparables: Insilico ($1B+), Recursion ($2B+ post-Exscientia), Zoe ($250M), Cost Plus Drugs ($1B+ revenue run rate).</p>
-    <div class="capital">
-      <div class="cap"><div class="c-yr">Year 1</div><div class="c-amt">$15–25M</div><div class="c-meta">Seed + Series A<br>40–50 FTE<br>2 trials, 1 registry</div></div>
-      <div class="cap"><div class="c-yr">Year 2–3</div><div class="c-amt">$50–100M</div><div class="c-meta">Series B<br>120–200 FTE<br>8–12 parallel trials</div></div>
-      <div class="cap"><div class="c-yr">Year 4–5</div><div class="c-amt">$200–500M</div><div class="c-meta">Series C+<br>500+ FTE<br>Platform licensing</div></div>
-      <div class="cap"><div class="c-yr">Year 6–7</div><div class="c-amt">$1B+</div><div class="c-meta">Cash-flow positive or<br>IPO / strategic exit</div></div>
+    <div class="sec-tag">Discipline</div>
+    <h2>We compete on trust. Rigor is the product, not the overhead.</h2>
+    <p class="lead">We are deliberately entering the two fields most synonymous with overclaiming — longevity and the microbiome — which makes rigor our entire differentiation. Non-negotiable from day one:</p>
+    <div class="grid-2">
+      <div class="force"><div class="f-head">Preregistered before enrollment</div><div class="f-body">Every trial IRB-approved, IND where required, and registered before the first patient.</div></div>
+      <div class="force"><div class="f-head">Publish every result, including negatives</div><div class="f-body">A definitive null is a win — and often a movement-defining one.</div></div>
+      <div class="force"><div class="f-head">Independent DSMB + statistician</div><div class="f-body">The methodology is separated from any individual. No single voice owns a readout.</div></div>
+      <div class="force"><div class="f-head">No commercial stake in any substance</div><div class="f-body">The platform is the business, not the molecule — so there is no incentive to bias a result.</div></div>
+      <div class="force"><div class="f-head">We correct bad science publicly</div><div class="f-body">Including allies'. No disease claims on unapproved interventions, ever.</div></div>
+      <div class="force"><div class="f-head">The cleanest signal in a noisy field</div><div class="f-body">Preregistration and published negatives over breath-test debates and testimonial threads.</div></div>
     </div>
   </div>
 </section>
 
-<!-- RISKS -->
-<section id="risks">
+<!-- TEAM -->
+<section id="team">
   <div class="wrap">
-    <div class="sec-tag">Risks, named</div>
-    <h2>Every failure mode in the category has a precedent. So does every mitigation.</h2>
-    <div class="risks">
-      <div class="risk"><div class="r-name">Single-donor capture (the NUSI failure mode)</div><div class="r-mit"><b>Mitigation</b>Open Science Guidelines from day 1; pre-commit to publishing negatives; diversify funders by Y3.</div></div>
-      <div class="risk"><div class="r-name">MAHA capture / crank-adjacency</div><div class="r-mit"><b>Mitigation</b>Explicit pro-vaccine, pro-RCT masthead; correct factual errors publicly; refuse co-platforming with discredited figures.</div></div>
-      <div class="risk"><div class="r-name">Founder-vs-brand civil war (the Cochrane problem)</div><div class="r-mit"><b>Mitigation</b>Separate methodology from any individual from day 1; codified dissent rights; co-equal voices.</div></div>
-      <div class="risk"><div class="r-name">Commercial COI eroding c3 credibility</div><div class="r-mit"><b>Mitigation</b>Four-entity wall; pre-published sponsor lists; royalty caps with surplus to mission.</div></div>
-      <div class="risk"><div class="r-name">FDA criminal referral on gray-zone tactics</div><div class="r-mit"><b>Mitigation</b>Strict green/yellow/red lane discipline; standing regulatory counsel; never cross into red.</div></div>
+    <div class="sec-tag">Founding team</div>
+    <h2>Three co-equal founders.</h2>
+    <p class="lead">The company is built by an operator and led in public by a scientist — deliberately. The founder builds and runs it; the scientific and clinical seats carry the credibility, and they are co-equal co-founders, not hires.</p>
+    <div class="products">
+      <div class="product">
+        <span class="p-idx">CEO</span>
+        <h3>Builder / operator</h3>
+        <p>Platform, engineering, fundraising, company-building. Scaled a real-time dispatch operation from zero to a dispatch every other second — the same match-route-fulfill pattern that patient recruitment runs on.</p>
+      </div>
+      <div class="product">
+        <span class="p-open">Forming</span>
+        <span class="p-idx">CSO</span>
+        <h3>Public &amp; scientific face</h3>
+        <p>An MD-PhD in GI, microbiome, or geroscience who is frustrated by the field's hype. Owns the methodology and picks the beachhead — the rigor-first voice the company is built around.</p>
+      </div>
+      <div class="product">
+        <span class="p-open">Forming</span>
+        <span class="p-idx">CMO</span>
+        <h3>Clinical &amp; regulatory</h3>
+        <p>A clinical-and-regulatory operator who has taken protocols through IRB/IND before. Runs the trials and owns the FDA workflow — because the first year <em>is</em> getting one rigorous trial out the door.</p>
+      </div>
     </div>
+    <div class="flywheel">The scientific and clinical seats are being formed now. <strong>The CSO is the recruit this whole plan turns on.</strong></div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap contact-cta">
-    <div class="sec-tag">Get in touch</div>
-    <h2>This is the artifact that begins the work.</h2>
-    <p class="lead">If the inequality lit something up for you, reach out. We're having the first conversations now.</p>
-    <div class="who">
-      <div class="who-item"><span class="gt">&gt;</span> Potential co-founders — CSO, regulatory, clinical ops, comms, policy</div>
-      <div class="who-item"><span class="gt">&gt;</span> Board members &amp; advisors — nonprofit governance, platform economics, PBC structure</div>
-      <div class="who-item"><span class="gt">&gt;</span> Investors — pre-seed and Series A</div>
-    </div>
-    <a href="https://x.com/pwidden" class="btn btn-primary x-cta" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      Message @pwidden on X
-    </a>
-    <div class="form-note">DMs open · @pwidden on X</div>
+<!-- CLOSE -->
+<section id="close">
+  <div class="wrap close">
+    <div class="sec-tag">Where this goes</div>
+    <h2>Beyond the anecdote — and built to last.</h2>
+    <p class="lead">
+      Accumulated evidence and organized patient demand move guidelines, coverage, and policy. Ten years out,
+      <strong>N&nbsp;<span class="gt">&gt;</span>&nbsp;1</strong> is field shorthand for rigorous repurposing
+      evidence — the way "Cochrane review" is shorthand for systematic review. This is what public science should
+      have been doing all along, built as a private, accountable, durable institution.
+    </p>
   </div>
 </section>
 
